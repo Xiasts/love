@@ -1,0 +1,250 @@
+:root {
+  color-scheme: light;
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Noto Sans CJK SC",
+    system-ui,
+    sans-serif;
+  --yellow: #ffd83d;
+  --yellow-shadow: #f0bc13;
+  --pink: #ff8fd3;
+  --pink-shadow: #ef67bc;
+  --ink: #27212b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: #fff;
+  color: var(--ink);
+}
+
+button {
+  font: inherit;
+}
+
+.page-shell {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  padding: clamp(22px, 6vw, 56px) 18px;
+}
+
+.love-card {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 430px);
+  transform: translateY(-2vh);
+}
+
+.float-stage {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  animation: softFloat 2.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.main-image {
+  width: min(72vw, 320px);
+  max-height: 48vh;
+  object-fit: contain;
+  user-select: none;
+  filter: drop-shadow(0 12px 20px rgb(50 38 57 / 10%));
+  transition:
+    opacity 220ms ease,
+    transform 260ms ease;
+}
+
+.main-image.is-changing {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.question-text {
+  max-width: min(90vw, 360px);
+  min-height: 34px;
+  margin: -12px 0 16px;
+  color: #19121f;
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  gap: 20px;
+  width: 100%;
+}
+
+.choice-button,
+.modal-button {
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.choice-button {
+  min-width: 86px;
+  height: 38px;
+  padding: 0 22px;
+  border-radius: 999px;
+  color: #332719;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 8px 0 rgb(0 0 0 / 4%);
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease,
+    width 180ms ease,
+    min-width 180ms ease,
+    padding 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.choice-button:active {
+  transform: translateY(2px) scale(0.97);
+}
+
+.yes-button {
+  background: var(--yellow);
+  box-shadow: 0 6px 0 var(--yellow-shadow);
+}
+
+.no-button {
+  background: var(--pink);
+  box-shadow: 0 6px 0 var(--pink-shadow);
+  color: #fff;
+  transform-origin: center;
+}
+
+.no-button.shrink-1 {
+  transform: scale(0.82);
+}
+
+.no-button.shrink-2 {
+  transform: scale(0.64);
+}
+
+.no-button.shrink-3 {
+  transform: scale(0.44);
+}
+
+.no-button.is-gone {
+  min-width: 0;
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.1);
+  box-shadow: none;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(0 0 0 / 46%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.message-modal {
+  display: grid;
+  justify-items: center;
+  width: min(82vw, 250px);
+  padding: 25px 20px 18px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgb(40 24 52 / 18%);
+  transform: translateY(8px) scale(0.96);
+  transition: transform 220ms ease;
+}
+
+.modal-backdrop.is-open .message-modal {
+  transform: translateY(0) scale(1);
+}
+
+.message-modal p {
+  margin: 0 0 14px;
+  color: #2a2230;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.modal-button {
+  min-width: 82px;
+  height: 32px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: var(--pink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translateY(-8px);
+  }
+
+  50% {
+    transform: translateY(9px);
+  }
+}
+
+@media (max-width: 380px) {
+  .main-image {
+    width: min(76vw, 280px);
+  }
+
+  .button-row {
+    gap: 14px;
+  }
+
+  .choice-button {
+    min-width: 76px;
+    height: 36px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}

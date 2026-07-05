@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>姜妤你想不想我</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="love-card" aria-label="想不想我互动页面">
+        <div class="float-stage" id="floatStage">
+          <img
+            class="main-image"
+            id="mainImage"
+            src="assets/start.jpg"
+            alt="可爱图片"
+            draggable="false"
+          />
+          <p class="question-text" id="questionText">姜妤你想不想我՞˶&gt; ᎑ &lt;˶՞</p>
+        </div>
+
+        <div class="button-row" aria-label="选择按钮">
+          <button class="choice-button yes-button" id="yesButton" type="button">想了</button>
+          <button class="choice-button no-button" id="noButton" type="button">不想</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+      <div class="message-modal" role="dialog" aria-modal="true" aria-labelledby="modalText">
+        <p id="modalText">好开心你这么想我&gt;ᴗOಣ</p>
+        <button class="modal-button" id="modalButton" type="button">再看一遍</button>
+      </div>
+    </div>
+
+    <audio id="bgm" src="assets/bgm.mp3" preload="auto" loop></audio>
+    <script src="script.js"></script>
+  </body>
+</html>
