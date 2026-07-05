@@ -125,6 +125,23 @@ button {
 .yes-button {
   background: var(--yellow);
   box-shadow: 0 6px 0 var(--yellow-shadow);
+  transform-origin: center;
+}
+
+.yes-button.grow-1 {
+  transform: scale(1.12);
+}
+
+.yes-button.grow-2 {
+  transform: scale(1.28);
+}
+
+.yes-button.grow-3 {
+  transform: scale(1.46);
+}
+
+.yes-button.grow-4 {
+  transform: scale(1.64);
 }
 
 .no-button {

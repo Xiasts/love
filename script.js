@@ -6,8 +6,30 @@ const modalBackdrop = document.querySelector("#modalBackdrop");
 const bgm = document.querySelector("#bgm");
 
 const noButtonSteps = ["shrink-1", "shrink-2", "shrink-3"];
+const yesButtonSteps = ["grow-1", "grow-2", "grow-3", "grow-4"];
 let noClicks = 0;
 let hasAccepted = false;
+let musicStarted = false;
+
+function playMusic() {
+  if (musicStarted) return Promise.resolve();
+
+  return bgm.play().then(() => {
+    musicStarted = true;
+  }).catch(() => {
+    musicStarted = false;
+  });
+}
+
+function unlockMusicOnce() {
+  playMusic().then(() => {
+    if (!musicStarted) return;
+
+    document.removeEventListener("pointerdown", unlockMusicOnce);
+    document.removeEventListener("touchstart", unlockMusicOnce);
+    document.removeEventListener("keydown", unlockMusicOnce);
+  });
+}
 
 function hideNoButton(delay = 180) {
   noButton.classList.add("is-gone");
@@ -23,6 +45,8 @@ function shrinkNoButton() {
 
   noClicks += 1;
   noButton.classList.remove(...noButtonSteps);
+  yesButton.classList.remove(...yesButtonSteps);
+  yesButton.classList.add(yesButtonSteps[Math.min(noClicks, 4) - 1]);
 
   if (noClicks >= 4) {
     hideNoButton();
@@ -41,9 +65,7 @@ function acceptMiss() {
   if (hasAccepted) return;
   hasAccepted = true;
 
-  bgm.play().catch(() => {
-    // Some browsers block audio until they fully trust the user gesture.
-  });
+  playMusic();
 
   mainImage.classList.add("is-changing");
   window.setTimeout(() => {
@@ -68,3 +90,7 @@ yesButton.addEventListener("click", acceptMiss);
 modalBackdrop.addEventListener("click", (event) => {
   if (event.target === modalBackdrop) closeModal();
 });
+document.addEventListener("pointerdown", unlockMusicOnce);
+document.addEventListener("touchstart", unlockMusicOnce);
+document.addEventListener("keydown", unlockMusicOnce);
+playMusic();
