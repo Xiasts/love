@@ -63,8 +63,12 @@ function openModal() {
 }
 
 function switchToEndImage() {
+  endImage.hidden = false;
   startImage.classList.remove("is-visible");
   endImage.classList.add("is-visible");
+  window.setTimeout(() => {
+    startImage.hidden = true;
+  }, 260);
   window.setTimeout(openModal, 420);
 }
 
@@ -88,6 +92,8 @@ function closeModal() {
 function resetInteraction() {
   noClicks = 0;
   hasAccepted = false;
+  startImage.hidden = false;
+  endImage.hidden = true;
   startImage.classList.add("is-visible");
   endImage.classList.remove("is-visible");
   modalBackdrop.classList.remove("is-open");
