@@ -61,23 +61,33 @@ function openModal() {
   modalBackdrop.setAttribute("aria-hidden", "false");
 }
 
+function switchToEndImage() {
+  let modalOpened = false;
+
+  function finishSwitch() {
+    mainImage.classList.remove("is-changing");
+    if (modalOpened) return;
+
+    modalOpened = true;
+    window.setTimeout(openModal, 240);
+  }
+
+  mainImage.classList.add("is-changing");
+  mainImage.addEventListener("load", finishSwitch, { once: true });
+  mainImage.src = `assets/end.jpg?v=${Date.now()}`;
+  window.setTimeout(finishSwitch, 1200);
+}
+
 function acceptMiss() {
   if (hasAccepted) return;
   hasAccepted = true;
 
   playMusic();
-
-  mainImage.classList.add("is-changing");
-  window.setTimeout(() => {
-    mainImage.src = "assets/end.jpg";
-    mainImage.classList.remove("is-changing");
-  }, 190);
+  switchToEndImage();
 
   questionText.textContent = "姜妤你想不想我՞˶> ᎑ <˶՞";
   hideNoButton(0);
   yesButton.textContent = "想了";
-
-  window.setTimeout(openModal, 360);
 }
 
 function closeModal() {
