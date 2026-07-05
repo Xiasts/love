@@ -75,7 +75,7 @@ button {
 .question-text {
   max-width: min(90vw, 360px);
   min-height: 34px;
-  margin: -12px 0 16px;
+  margin: 12px 0 18px;
   color: #19121f;
   font-size: clamp(18px, 5vw, 24px);
   font-weight: 800;
@@ -93,8 +93,7 @@ button {
   width: 100%;
 }
 
-.choice-button,
-.modal-button {
+.choice-button {
   border: 0;
   cursor: pointer;
   user-select: none;
@@ -157,6 +156,10 @@ button {
   box-shadow: none;
 }
 
+.no-button[hidden] {
+  display: none;
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -178,7 +181,7 @@ button {
   display: grid;
   justify-items: center;
   width: min(82vw, 250px);
-  padding: 25px 20px 18px;
+  padding: 28px 20px;
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 18px 42px rgb(40 24 52 / 18%);
@@ -191,23 +194,12 @@ button {
 }
 
 .message-modal p {
-  margin: 0 0 14px;
+  margin: 0;
   color: #2a2230;
   font-size: 16px;
   font-weight: 800;
   line-height: 1.5;
   text-align: center;
-}
-
-.modal-button {
-  min-width: 82px;
-  height: 32px;
-  padding: 0 15px;
-  border-radius: 999px;
-  background: var(--pink);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
 }
 
 @keyframes softFloat {
