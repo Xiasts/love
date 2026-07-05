@@ -129,19 +129,31 @@ button {
 }
 
 .yes-button.grow-1 {
-  transform: scale(1.12);
+  min-width: 104px;
+  height: 44px;
+  padding: 0 28px;
+  font-size: 17px;
 }
 
 .yes-button.grow-2 {
-  transform: scale(1.28);
+  min-width: 124px;
+  height: 50px;
+  padding: 0 34px;
+  font-size: 19px;
 }
 
 .yes-button.grow-3 {
-  transform: scale(1.46);
+  min-width: 148px;
+  height: 58px;
+  padding: 0 42px;
+  font-size: 22px;
 }
 
 .yes-button.grow-4 {
-  transform: scale(1.64);
+  min-width: 178px;
+  height: 66px;
+  padding: 0 52px;
+  font-size: 25px;
 }
 
 .no-button {
@@ -244,6 +256,34 @@ button {
     height: 36px;
     padding: 0 18px;
     font-size: 14px;
+  }
+
+  .yes-button.grow-1 {
+    min-width: 96px;
+    height: 42px;
+    padding: 0 24px;
+    font-size: 16px;
+  }
+
+  .yes-button.grow-2 {
+    min-width: 116px;
+    height: 48px;
+    padding: 0 30px;
+    font-size: 18px;
+  }
+
+  .yes-button.grow-3 {
+    min-width: 138px;
+    height: 56px;
+    padding: 0 36px;
+    font-size: 21px;
+  }
+
+  .yes-button.grow-4 {
+    min-width: 166px;
+    height: 64px;
+    padding: 0 46px;
+    font-size: 24px;
   }
 }
 
