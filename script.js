@@ -1,4 +1,5 @@
-const mainImage = document.querySelector("#mainImage");
+const startImage = document.querySelector("#startImage");
+const endImage = document.querySelector("#endImage");
 const questionText = document.querySelector("#questionText");
 const yesButton = document.querySelector("#yesButton");
 const noButton = document.querySelector("#noButton");
@@ -62,20 +63,9 @@ function openModal() {
 }
 
 function switchToEndImage() {
-  let modalOpened = false;
-
-  function finishSwitch() {
-    mainImage.classList.remove("is-changing");
-    if (modalOpened) return;
-
-    modalOpened = true;
-    window.setTimeout(openModal, 240);
-  }
-
-  mainImage.classList.add("is-changing");
-  mainImage.addEventListener("load", finishSwitch, { once: true });
-  mainImage.src = `assets/end.jpg?v=${Date.now()}`;
-  window.setTimeout(finishSwitch, 1200);
+  startImage.classList.remove("is-visible");
+  endImage.classList.add("is-visible");
+  window.setTimeout(openModal, 420);
 }
 
 function acceptMiss() {
@@ -95,10 +85,28 @@ function closeModal() {
   modalBackdrop.setAttribute("aria-hidden", "true");
 }
 
+function resetInteraction() {
+  noClicks = 0;
+  hasAccepted = false;
+  startImage.classList.add("is-visible");
+  endImage.classList.remove("is-visible");
+  modalBackdrop.classList.remove("is-open");
+  modalBackdrop.setAttribute("aria-hidden", "true");
+  noButton.hidden = false;
+  noButton.classList.remove(...noButtonSteps, "is-gone");
+  noButton.removeAttribute("aria-hidden");
+  noButton.tabIndex = 0;
+  yesButton.classList.remove(...yesButtonSteps);
+  yesButton.textContent = "想了";
+}
+
 noButton.addEventListener("click", shrinkNoButton);
 yesButton.addEventListener("click", acceptMiss);
 modalBackdrop.addEventListener("click", (event) => {
   if (event.target === modalBackdrop) closeModal();
+});
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) resetInteraction();
 });
 document.addEventListener("pointerdown", unlockMusicOnce);
 document.addEventListener("touchstart", unlockMusicOnce);

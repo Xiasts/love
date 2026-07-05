@@ -56,10 +56,21 @@ button {
   will-change: transform;
 }
 
-.main-image {
+.image-stack {
+  display: grid;
+  place-items: center;
   width: min(72vw, 320px);
+  aspect-ratio: 1 / 1;
   max-height: 48vh;
+}
+
+.main-image {
+  grid-area: 1 / 1;
+  width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  opacity: 0;
+  transform: scale(0.94);
   user-select: none;
   filter: drop-shadow(0 12px 20px rgb(50 38 57 / 10%));
   transition:
@@ -67,9 +78,9 @@ button {
     transform 260ms ease;
 }
 
-.main-image.is-changing {
-  opacity: 0;
-  transform: scale(0.94);
+.main-image.is-visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .question-text {
@@ -243,7 +254,7 @@ button {
 }
 
 @media (max-width: 380px) {
-  .main-image {
+  .image-stack {
     width: min(76vw, 280px);
   }
 
